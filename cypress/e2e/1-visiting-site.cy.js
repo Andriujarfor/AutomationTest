@@ -19,6 +19,8 @@ describe('Visiting site and scrolling down ', () => {
 
     cy.get('.col-sm-6 > .btn').click();
 
+    cy.get('.modal-body > :nth-child(2) > a > u').click();
+
     // cy.get('btn.btn-default.check_out').click();
   });
 });
