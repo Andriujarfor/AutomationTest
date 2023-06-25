@@ -28,5 +28,23 @@ describe('form fields filling', () => {
     cy.get('[data-qa="first_name"]').type(this.GlobalName);
 
     cy.get('[data-qa="last_name"]').type('Boza');
+
+    cy.get('[data-qa="company"]').type('APPLY');
+
+    cy.get('[data-qa="address"]').type('address #1');
+
+    cy.get('[data-qa="address2"]').type('address #2');
+
+    cy.get('[data-qa="country"]').select(2);
+
+    cy.get('[data-qa="state"]').type('state');
+
+    cy.get('[data-qa="city"]').type('city');
+
+    cy.get('[data-qa="zipcode"]').type('12321');
+
+    cy.get('[data-qa="mobile_number"]').type('numbeeeeer');
+
+    cy.get('[data-qa="create-account"]').click();
   });
 });
