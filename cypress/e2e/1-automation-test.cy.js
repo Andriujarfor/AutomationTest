@@ -2,7 +2,7 @@ const routes = {
   homepage: '/',
 };
 
-describe('Visiting site and scrolling down ', () => {
+describe('Visiting site and scrolling down ', { browser: 'chrome' }, () => {
   it('visiting site', () => {
     // 1. Visit the exercise site using the base url set in the config
     cy.visit(routes.homepage);
@@ -31,12 +31,14 @@ describe('Visiting site and scrolling down ', () => {
     cy.get('[data-qa="signup-email"]').type('email@ad.com');
     cy.get('[data-qa="signup-button"]').click();
 
-    //8. 😈
+    //8. 😈 complicated version xdd
     // cy.get('form').then((ele) => {
     //   console.log(ele);
     //   const radioBtns = ele.find('radio');
     //   console.log(radioBtns.find(''));
     // cy.get(radioBtns);
     // });
+
+    //8. 😔 normal version :(
   });
 });
