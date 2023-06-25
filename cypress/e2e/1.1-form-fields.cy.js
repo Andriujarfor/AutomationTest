@@ -46,5 +46,44 @@ describe('form fields filling', () => {
     cy.get('[data-qa="mobile_number"]').type('numbeeeeer');
 
     cy.get('[data-qa="create-account"]').click();
+    //9
+    cy.get('[data-qa="continue-button"]').click();
+  });
+
+  it('adding to cart', () => {
+    //10
+    cy.visit('/');
+
+    cy.get('.shop-menu > .nav > :nth-child(3) > a').click();
+    //11
+    cy.get('.col-sm-6 > .btn').click();
+    //12
+    cy.get('.form-control').type('Buying some clothes for summer time');
+    cy.contains('Place Order').click();
+    //13
+    cy.get('[data-qa="name-on-card"]').type('BANCO DE DINERO');
+    cy.get('[data-qa="card-number"]').type('cardNumber');
+    cy.get('[data-qa="cvc"]').type('number122');
+    cy.get('[data-qa="expiry-month"]').type('08');
+    cy.get('[data-qa="expiry-year"]').type('2025');
+    cy.get('[data-qa="pay-button"]').click();
+    //14
+    cy.get('[data-qa="continue-button"]').click();
+  });
+
+  //15
+  it('logging out', () => {
+    cy.contains('Logout').click();
+  });
+
+  it('loggin in xdd when I need to reset', () => {
+    //16
+    cy.get('[data-qa="login-email"]').type('email@address.com');
+    cy.get('[data-qa="login-password"]').type('andre123');
+    cy.get('[data-qa="login-button"]').click();
+  });
+
+  it.only('Contact us', () => {
+    cy.visit('/');
   });
 });

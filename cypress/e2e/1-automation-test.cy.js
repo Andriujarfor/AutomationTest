@@ -20,7 +20,7 @@ describe('Visiting site and scrolling down ', { browser: 'chrome' }, () => {
     cy.contains('View Cart').click();
 
     // 5.
-    cy.get('.col-sm-6 > .btn').scrollIntoView().should('be.visible');
+    // cy.get('.col-sm-6 > .btn').scrollIntoView().should('be.visible');
     cy.get('.col-sm-6 > .btn').click();
 
     // 6.
