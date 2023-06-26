@@ -3,7 +3,8 @@ describe('form fields filling', () => {
     cy.visit('/login');
     cy.get('[data-qa="signup-name"]').type('Andre').as('name');
     cy.get('@name').invoke('val').as('GlobalName');
-    cy.get('[data-qa="signup-email"]').type('email@address.com');
+    cy.get('[data-qa="signup-email"]').type('email@address.com').as('EmailA');
+    cy.get('@EmailA').invoke('val').as('GlobalEmail');
     cy.get('[data-qa="signup-button"]').click();
 
     // cy.get('[action="/signup"]').then((formElements) => {
@@ -11,6 +12,7 @@ describe('form fields filling', () => {
     // });
   });
   it('globalName', function () {
+    // report hidden inputs and all bad practices
     cy.get('#id_gender1').check();
 
     cy.get('[data-qa="password"]').type('andre123');
@@ -83,7 +85,17 @@ describe('form fields filling', () => {
     cy.get('[data-qa="login-button"]').click();
   });
 
-  it.only('Contact us', () => {
+  it.only('Contact us', function () {
+    //17
     cy.visit('/');
+    cy.contains('Contact us').click();
+
+    //18
+    cy.get('[data-qa="name"]').type('Andre');
+    cy.get('[data-qa="email"]').type('email@address.com'); // do it with the global variable or in other case use objects
+    cy.get('[data-qa="subject"]').type('Contacting');
+    cy.get('[data-qa="message"]').type('messaging');
+    cy.contains('Choose File');
+    cy.get('[data-qa="submit-button"]');
   });
 });
