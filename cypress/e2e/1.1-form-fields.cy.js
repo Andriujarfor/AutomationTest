@@ -74,11 +74,17 @@ describe('form fields filling', () => {
   });
 
   //15
-  it('logging out', () => {
-    cy.contains('Logout').click();
-  });
+  const logOutFunc = function () {
+    it.only('logging out', () => {
+      cy.visit('/');
 
-  it('loggin in xdd when I need to reset', () => {
+      cy.contains('Logout').click();
+    });
+  };
+  logOutFunc();
+
+  it.only('loggin in xdd when I need to reset', () => {
+    cy.visit('/login');
     //16
     cy.get('[data-qa="login-email"]').type('email@address.com');
     cy.get('[data-qa="login-password"]').type('andre123');
@@ -87,7 +93,7 @@ describe('form fields filling', () => {
 
   it.only('Contact us', function () {
     //17
-    cy.visit('/');
+    // cy.visit('/');
     cy.contains('Contact us').click();
 
     //18
@@ -95,7 +101,10 @@ describe('form fields filling', () => {
     cy.get('[data-qa="email"]').type('email@address.com'); // do it with the global variable or in other case use objects
     cy.get('[data-qa="subject"]').type('Contacting');
     cy.get('[data-qa="message"]').type('messaging');
-    cy.contains('Choose File');
-    cy.get('[data-qa="submit-button"]');
+    cy.get(':nth-child(6) > .form-control').selectFile('SuperSmashBrosUltimate.jpg');
+    cy.get('[data-qa="submit-button"]').click();
+    cy.get('#form-section > .btn').click();
+    //20
   });
+  logOutFunc();
 });
