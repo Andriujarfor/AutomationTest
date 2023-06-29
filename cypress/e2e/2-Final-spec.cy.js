@@ -1,6 +1,5 @@
 const routes = {
   homepage: '/',
-  login: '/login',
 };
 
 const dataValues = {
@@ -14,7 +13,7 @@ const dataValues = {
   state: 'Zulia',
   city: 'Maracaibo',
   zipcode: '12321',
-  mobile_number: '041212334567',
+  mobile_number: '04121234567',
 };
 
 const dateVal = {
@@ -39,11 +38,12 @@ const dataContact = {
 };
 
 describe('Automation flow ', { browser: 'chrome' }, () => {
+  // set to only run in chrome for tests
   it('Intereacting adn reproducing a real user behavior', () => {
     // 1. Visit the exercise site using the base url set in the config
     cy.visit(routes.homepage);
 
-    // 2. Scrolls down to the center of the page is a lapse of 3 seconds
+    // 2. Scrolls down to the center of the page is a lapse of 3 seconds and choosing a product
     cy.scrollTo('center', { duration: 3000 });
     cy.get('a[href="/product_details/28"]').click();
 
