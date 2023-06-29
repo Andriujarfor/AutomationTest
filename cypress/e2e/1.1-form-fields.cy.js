@@ -1,3 +1,11 @@
+const dataBank = {
+  name_on_card: 'BOFA',
+  card_number: '123123',
+  cvc: '1087',
+  expiry_month: '08',
+  expiry_year: '2025',
+};
+
 describe('form fields filling', () => {
   it('filling inputs', function () {
     cy.visit('/login');
@@ -62,17 +70,17 @@ describe('form fields filling', () => {
     //12
     cy.get('.form-control').type('Buying some clothes for summer time');
     cy.contains('Place Order').click();
-    //13
-    cy.get('[data-qa="name-on-card"]').type('BANCO DE DINERO');
-    cy.get('[data-qa="card-number"]').type('cardNumber');
-    cy.get('[data-qa="cvc"]').type('number122');
-    cy.get('[data-qa="expiry-month"]').type('08');
-    cy.get('[data-qa="expiry-year"]').type('2025');
-    cy.get('[data-qa="pay-button"]').click();
-    //14
-    cy.get('[data-qa="continue-button"]').click();
-  });
+    // //13
+    // cy.get('[data-qa="name-on-card"]').type('BANCO DE DINERO');
+    // cy.get('[data-qa="card-number"]').type('cardNumber');
+    // cy.get('[data-qa="cvc"]').type('number122');
+    // cy.get('[data-qa="expiry-month"]').type('08');
+    // cy.get('[data-qa="expiry-year"]').type('2025');
 
+    for (const key in dataBank) {
+      cy.get(`[data-qa="${key.replaceAll('_', '-')}"]`).type(dataBank[key]);
+    }
+  });
   //15
   const logOutFunc = function () {
     it.only('logging out', () => {
@@ -81,9 +89,9 @@ describe('form fields filling', () => {
       cy.contains('Logout').click();
     });
   };
-  logOutFunc();
+  // logOutFunc();
 
-  it.only('loggin in xdd when I need to reset', () => {
+  it('loggin in xdd when I need to reset', () => {
     cy.visit('/login');
     //16
     cy.get('[data-qa="login-email"]').type('email@address.com');
@@ -93,7 +101,7 @@ describe('form fields filling', () => {
 
   it.only('Contact us', function () {
     //17
-    // cy.visit('/');
+    cy.visit('/');
     cy.contains('Contact us').click();
 
     //18
@@ -102,9 +110,9 @@ describe('form fields filling', () => {
     cy.get('[data-qa="subject"]').type('Contacting');
     cy.get('[data-qa="message"]').type('messaging');
     cy.get(':nth-child(6) > .form-control').selectFile('SuperSmashBrosUltimate.jpg');
-    cy.get('[data-qa="submit-button"]').click();
-    cy.get('#form-section > .btn').click();
+    // cy.get('[data-qa="submit-button"]').click();
+    // cy.get('#form-section > .btn').click();
     //20
   });
-  logOutFunc();
+  // logOutFunc();
 });
