@@ -1,50 +1,36 @@
-const routes = {
-  homepage: '/',
-};
-
-const dataValues = {
-  first_name: 'Andre',
-  last_name: 'Boza',
-  email: 'andre@email.com',
-  password: 'andre123',
-  company: 'Apply',
-  address: 'Principal avenue',
-  address2: 'Secundary avenue',
-  state: 'Zulia',
-  city: 'Maracaibo',
-  zipcode: '12321',
-  mobile_number: '04121234567',
-};
-
-const dateVal = {
-  days: 29,
-  months: 10,
-  years: 23,
-  country: 2,
-};
-
-const dataBank = {
-  name_on_card: 'BOFA',
-  card_number: '123123',
-  cvc: '1087',
-  expiry_month: '08',
-  expiry_year: '2025',
-};
-
-const dataContact = {
-  subject: 'Need some information',
-  message: 'Im contacting to get to know all the variety of products sizes',
-  file: 'SuperSmashBrosUltimate.jpg',
-};
+let dataValues;
+let dateVal;
+let dataBank;
+let dataContact;
 
 describe('Automation flow ', { browser: 'chrome' }, () => {
   // set to only run in chrome for tests
-  it('Intereacting adn reproducing a real user behavior', () => {
+
+  // Using fixtures to access the data used in the inputs in a reusable way
+  before('fixture', () => {
+    cy.fixture('data').then((data) => {
+      dataValues = data;
+    });
+
+    cy.fixture('date').then((date) => {
+      dateVal = date;
+    });
+
+    cy.fixture('contact').then((contact) => {
+      dataContact = contact;
+    });
+
+    cy.fixture('bank').then((bank) => {
+      dataBank = bank;
+    });
+  });
+
+  it('Intereacting and reproducing a real user behavior', () => {
     // 1. Visit the exercise site using the base url set in the config
-    cy.visit(routes.homepage);
+    cy.visit('/');
 
     // 2. Scrolls down to the center of the page is a lapse of 3 seconds and choosing a product
-    cy.scrollTo('center', { duration: 3000 });
+    cy.scrollTo('center', { duration: 1000 });
     cy.get('a[href="/product_details/28"]').click();
 
     // 3. Changing amount of products
@@ -52,7 +38,7 @@ describe('Automation flow ', { browser: 'chrome' }, () => {
     cy.get('#quantity').type('30');
 
     // 4. Adding to cart and viewing cart products
-    cy.contains('Add to cart').click(); // add to cart incredibly long space 🪲
+    cy.contains('Add to cart').click();
     cy.contains('View Cart').click();
 
     // 5. Proceeding to check out

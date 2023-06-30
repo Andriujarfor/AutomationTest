@@ -1,0 +1,13 @@
+{
+  "first_name": "Andre",
+  "last_name": "Boza",
+  "email": "andre@email.com",
+  "password": "andre123",
+  "company": "Apply",
+  "address": "Principal avenue",
+  "address2": "Secundary avenue",
+  "state": "Zulia",
+  "city": "Maracaibo",
+  "zipcode": "12321",
+  "mobile_number": "04121234567"
+}
